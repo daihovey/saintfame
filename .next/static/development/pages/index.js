@@ -3993,10 +3993,10 @@ for (var i = 0; i < DOMIterables.length; i++) {
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fdavidhovey%2FSaintFame%2FSite%2Fpages%2Findex.tsx!./":
-/*!*************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fdavidhovey%2FSaintFame%2FSite%2Fpages%2Findex.tsx ***!
-  \*************************************************************************************************************************************************************************/
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fdavidhovey%2FSaintFame%2Fsaintfame%2Fpages%2Findex.tsx!./":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fdavidhovey%2FSaintFame%2Fsaintfame%2Fpages%2Findex.tsx ***!
+  \******************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5214,7 +5214,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/Users/davidhovey/SaintFame/Site/pages/index.tsx";
+var _jsxFileName = "/Users/davidhovey/SaintFame/saintfame/pages/index.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement;
 
@@ -5245,9 +5245,119 @@ function parseLogs(logs, contract) {
   });
 }
 
-var getAddresses = function getAddresses() {
-  var provider = new ethers__WEBPACK_IMPORTED_MODULE_5__["ethers"].providers.JsonRpcProvider("https://mainnet.infura.io/v3/ab962fb32dfc49a8ab6ab72a6a318c85"); // prettier-ignore
+var provider = new ethers__WEBPACK_IMPORTED_MODULE_5__["ethers"].providers.JsonRpcProvider('https://mainnet.infura.io/v3/ab962fb32dfc49a8ab6ab72a6a318c85');
 
+var getFinances = function getFinances() {
+  // prettier-ignore
+  var abi = [{
+    "constant": true,
+    "inputs": [],
+    "name": "proxyType",
+    "outputs": [{
+      "name": "proxyTypeId",
+      "type": "uint256"
+    }],
+    "payable": false,
+    "stateMutability": "pure",
+    "type": "function"
+  }, {
+    "constant": true,
+    "inputs": [],
+    "name": "isDepositable",
+    "outputs": [{
+      "name": "",
+      "type": "bool"
+    }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }, {
+    "constant": true,
+    "inputs": [],
+    "name": "implementation",
+    "outputs": [{
+      "name": "",
+      "type": "address"
+    }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }, {
+    "constant": true,
+    "inputs": [],
+    "name": "appId",
+    "outputs": [{
+      "name": "",
+      "type": "bytes32"
+    }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }, {
+    "constant": true,
+    "inputs": [],
+    "name": "kernel",
+    "outputs": [{
+      "name": "",
+      "type": "address"
+    }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }, {
+    "inputs": [{
+      "name": "_kernel",
+      "type": "address"
+    }, {
+      "name": "_appId",
+      "type": "bytes32"
+    }, {
+      "name": "_initializePayload",
+      "type": "bytes"
+    }],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  }, {
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "fallback"
+  }, {
+    "anonymous": false,
+    "inputs": [{
+      "indexed": false,
+      "name": "sender",
+      "type": "address"
+    }, {
+      "indexed": false,
+      "name": "value",
+      "type": "uint256"
+    }],
+    "name": "ProxyDeposit",
+    "type": "event"
+  }];
+  var contractAddress = '0xf739C4d15854CaB9874E24a4D1Ec084DCAF1F13F';
+  var contract = new ethers__WEBPACK_IMPORTED_MODULE_5__["ethers"].Contract(contractAddress, abi, new ethers__WEBPACK_IMPORTED_MODULE_5__["ethers"].providers.JsonRpcProvider());
+  var filter = {
+    address: contractAddress,
+    fromBlock: 8972891,
+    // Block of Contract's first transaction
+    toBlock: 'latest',
+    topics: []
+  };
+  return provider.getLogs(filter).then(function (result) {
+    console.log('finances = ', result);
+    var logs = parseLogs(result, contract);
+    console.log('finances = ', logs); // const addresses: string[] = logs.map(function(log) {
+    //     return log.values['_to'] + '\n'
+    // })
+
+    return [];
+  });
+};
+
+var getAddresses = function getAddresses() {
+  // prettier-ignore
   var abi = [{
     "constant": true,
     "inputs": [],
@@ -5693,19 +5803,20 @@ var getAddresses = function getAddresses() {
     "name": "Approval",
     "type": "event"
   }];
-  var contractAddress = "0xD275B1550E8ca8Da84c552ACa9313Ec4a5B9bD07";
+  var contractAddress = '0xD275B1550E8ca8Da84c552ACa9313Ec4a5B9bD07';
   var contract = new ethers__WEBPACK_IMPORTED_MODULE_5__["ethers"].Contract(contractAddress, abi, new ethers__WEBPACK_IMPORTED_MODULE_5__["ethers"].providers.JsonRpcProvider());
   var filter = {
     address: contractAddress,
     fromBlock: 8960961,
     // Block of Contract's first transaction
-    toBlock: "latest",
+    toBlock: 'latest',
     topics: []
   };
   return provider.getLogs(filter).then(function (result) {
+    console.log('address = ', result);
     var logs = parseLogs(result, contract);
     var addresses = logs.map(function (log) {
-      return log.values["_to"] + "\n";
+      return log.values['_to'] + '\n';
     });
     return addresses;
   });
@@ -5715,9 +5826,10 @@ var Home = function Home(_ref) {
   var addresses = _ref.addresses;
   var listItems = addresses.map(function (address) {
     return __jsx("li", {
+      key: address,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 63
+        lineNumber: 102
       },
       __self: this
     }, address);
@@ -5725,19 +5837,19 @@ var Home = function Home(_ref) {
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 66
+      lineNumber: 105
     },
     __self: this
   }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_6___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 67
+      lineNumber: 106
     },
     __self: this
   }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 68
+      lineNumber: 107
     },
     __self: this
   }, "DAOSCIPLES"), __jsx("meta", {
@@ -5745,19 +5857,19 @@ var Home = function Home(_ref) {
     content: "initial-scale=1.0, width=device-width",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 69
+      lineNumber: 108
     },
     __self: this
   })), __jsx("h1", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 71
+      lineNumber: 113
     },
     __self: this
   }, "$AINT TOKEN HOLDERS"), __jsx("ul", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 72
+      lineNumber: 114
     },
     __self: this
   }, listItems));
@@ -5769,22 +5881,24 @@ function () {
   var _ref3 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
   /*#__PURE__*/
   _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref2) {
-    var req, addresses;
+    var req, addresses, finances;
     return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             req = _ref2.req;
-            _context.next = 3;
-            return getAddresses();
+            addresses = ['']; //await getAddresses()
 
-          case 3:
-            addresses = _context.sent;
+            _context.next = 4;
+            return getFinances();
+
+          case 4:
+            finances = _context.sent;
             return _context.abrupt("return", {
               addresses: addresses
             });
 
-          case 5:
+          case 6:
           case "end":
             return _context.stop();
         }
@@ -5802,13 +5916,13 @@ function () {
 /***/ }),
 
 /***/ 1:
-/*!*****************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fdavidhovey%2FSaintFame%2FSite%2Fpages%2Findex.tsx ***!
-  \*****************************************************************************************************************************/
+/*!**********************************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fdavidhovey%2FSaintFame%2Fsaintfame%2Fpages%2Findex.tsx ***!
+  \**********************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fdavidhovey%2FSaintFame%2FSite%2Fpages%2Findex.tsx! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fdavidhovey%2FSaintFame%2FSite%2Fpages%2Findex.tsx!./");
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fdavidhovey%2FSaintFame%2Fsaintfame%2Fpages%2Findex.tsx! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fdavidhovey%2FSaintFame%2Fsaintfame%2Fpages%2Findex.tsx!./");
 
 
 /***/ }),

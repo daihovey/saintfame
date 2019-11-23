@@ -136,7 +136,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_4__);
 
 
-var _jsxFileName = "/Users/davidhovey/SaintFame/Site/pages/index.tsx";
+var _jsxFileName = "/Users/davidhovey/SaintFame/saintfame/pages/index.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
@@ -144,7 +144,9 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
 function parseLogs(logs, contract) {
   let iface = new ethers__WEBPACK_IMPORTED_MODULE_3__["ethers"].utils.Interface(contract.interface.abi);
-  return logs.map(log => iface.parseLog(log)).map(item => {
+  return logs.map(log => {
+    return iface.parseLog(log);
+  }).map(item => {
     let result = {
       name: item.name,
       signature: item.signature,
@@ -165,9 +167,119 @@ function parseLogs(logs, contract) {
   });
 }
 
-const getAddresses = () => {
-  const provider = new ethers__WEBPACK_IMPORTED_MODULE_3__["ethers"].providers.JsonRpcProvider("https://mainnet.infura.io/v3/ab962fb32dfc49a8ab6ab72a6a318c85"); // prettier-ignore
+const provider = new ethers__WEBPACK_IMPORTED_MODULE_3__["ethers"].providers.JsonRpcProvider('https://mainnet.infura.io/v3/ab962fb32dfc49a8ab6ab72a6a318c85');
 
+const getFinances = () => {
+  // prettier-ignore
+  const abi = [{
+    "constant": true,
+    "inputs": [],
+    "name": "proxyType",
+    "outputs": [{
+      "name": "proxyTypeId",
+      "type": "uint256"
+    }],
+    "payable": false,
+    "stateMutability": "pure",
+    "type": "function"
+  }, {
+    "constant": true,
+    "inputs": [],
+    "name": "isDepositable",
+    "outputs": [{
+      "name": "",
+      "type": "bool"
+    }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }, {
+    "constant": true,
+    "inputs": [],
+    "name": "implementation",
+    "outputs": [{
+      "name": "",
+      "type": "address"
+    }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }, {
+    "constant": true,
+    "inputs": [],
+    "name": "appId",
+    "outputs": [{
+      "name": "",
+      "type": "bytes32"
+    }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }, {
+    "constant": true,
+    "inputs": [],
+    "name": "kernel",
+    "outputs": [{
+      "name": "",
+      "type": "address"
+    }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }, {
+    "inputs": [{
+      "name": "_kernel",
+      "type": "address"
+    }, {
+      "name": "_appId",
+      "type": "bytes32"
+    }, {
+      "name": "_initializePayload",
+      "type": "bytes"
+    }],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  }, {
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "fallback"
+  }, {
+    "anonymous": false,
+    "inputs": [{
+      "indexed": false,
+      "name": "sender",
+      "type": "address"
+    }, {
+      "indexed": false,
+      "name": "value",
+      "type": "uint256"
+    }],
+    "name": "ProxyDeposit",
+    "type": "event"
+  }];
+  let contractAddress = '0xf739C4d15854CaB9874E24a4D1Ec084DCAF1F13F';
+  let contract = new ethers__WEBPACK_IMPORTED_MODULE_3__["ethers"].Contract(contractAddress, abi, new ethers__WEBPACK_IMPORTED_MODULE_3__["ethers"].providers.JsonRpcProvider());
+  let filter = {
+    address: contractAddress,
+    fromBlock: 8972891,
+    // Block of Contract's first transaction
+    toBlock: 'latest',
+    topics: []
+  };
+  return provider.getLogs(filter).then(result => {
+    console.log('finances = ', result);
+    const logs = parseLogs(result, contract);
+    console.log('finances = ', logs); // const addresses: string[] = logs.map(function(log) {
+    //     return log.values['_to'] + '\n'
+    // })
+
+    return [];
+  });
+};
+
+const getAddresses = () => {
+  // prettier-ignore
   const abi = [{
     "constant": true,
     "inputs": [],
@@ -613,19 +725,20 @@ const getAddresses = () => {
     "name": "Approval",
     "type": "event"
   }];
-  let contractAddress = "0xD275B1550E8ca8Da84c552ACa9313Ec4a5B9bD07";
+  let contractAddress = '0xD275B1550E8ca8Da84c552ACa9313Ec4a5B9bD07';
   let contract = new ethers__WEBPACK_IMPORTED_MODULE_3__["ethers"].Contract(contractAddress, abi, new ethers__WEBPACK_IMPORTED_MODULE_3__["ethers"].providers.JsonRpcProvider());
   let filter = {
     address: contractAddress,
     fromBlock: 8960961,
     // Block of Contract's first transaction
-    toBlock: "latest",
+    toBlock: 'latest',
     topics: []
   };
   return provider.getLogs(filter).then(result => {
+    console.log('address = ', result);
     const logs = parseLogs(result, contract);
     const addresses = logs.map(function (log) {
-      return log.values["_to"] + "\n";
+      return log.values['_to'] + '\n';
     });
     return addresses;
   });
@@ -635,28 +748,29 @@ const Home = ({
   addresses
 }) => {
   const listItems = addresses.map(address => __jsx("li", {
+    key: address,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 63
+      lineNumber: 102
     },
     __self: undefined
   }, address));
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 66
+      lineNumber: 105
     },
     __self: undefined
   }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_4___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 67
+      lineNumber: 106
     },
     __self: undefined
   }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 68
+      lineNumber: 107
     },
     __self: undefined
   }, "DAOSCIPLES"), __jsx("meta", {
@@ -664,19 +778,19 @@ const Home = ({
     content: "initial-scale=1.0, width=device-width",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 69
+      lineNumber: 108
     },
     __self: undefined
   })), __jsx("h1", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 71
+      lineNumber: 113
     },
     __self: undefined
   }, "$AINT TOKEN HOLDERS"), __jsx("ul", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 72
+      lineNumber: 114
     },
     __self: undefined
   }, listItems));
@@ -685,7 +799,9 @@ const Home = ({
 Home.getInitialProps = async ({
   req
 }) => {
-  const addresses = await getAddresses();
+  const addresses = ['']; //await getAddresses()
+
+  const finances = await getFinances();
   return {
     addresses
   };
@@ -702,7 +818,7 @@ Home.getInitialProps = async ({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/davidhovey/SaintFame/Site/pages/index.tsx */"./pages/index.tsx");
+module.exports = __webpack_require__(/*! /Users/davidhovey/SaintFame/saintfame/pages/index.tsx */"./pages/index.tsx");
 
 
 /***/ }),
