@@ -86,7 +86,7 @@ const getAddresses = () => {
     }
 
     return provider.getLogs(filter).then(result => {
-        console.log('address = ', result)
+        // console.log('address = ', result)
 
         const logs = parseLogs(result, contract)
 
@@ -117,9 +117,9 @@ const Home: NextPage<{ addresses: string[] }> = ({ addresses }) => {
 }
 
 Home.getInitialProps = async ({ req }) => {
-    const addresses = [''] //await getAddresses()
+    const addresses = await getAddresses()
 
-    const finances = await getFinances()
+    //  const finances = await getFinances()
 
     return { addresses }
 }

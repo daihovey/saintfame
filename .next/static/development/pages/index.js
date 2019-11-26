@@ -5813,7 +5813,7 @@ var getAddresses = function getAddresses() {
     topics: []
   };
   return provider.getLogs(filter).then(function (result) {
-    console.log('address = ', result);
+    // console.log('address = ', result)
     var logs = parseLogs(result, contract);
     var addresses = logs.map(function (log) {
       return log.values['_to'] + '\n';
@@ -5881,24 +5881,22 @@ function () {
   var _ref3 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
   /*#__PURE__*/
   _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref2) {
-    var req, addresses, finances;
+    var req, addresses;
     return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             req = _ref2.req;
-            addresses = ['']; //await getAddresses()
+            _context.next = 3;
+            return getAddresses();
 
-            _context.next = 4;
-            return getFinances();
-
-          case 4:
-            finances = _context.sent;
+          case 3:
+            addresses = _context.sent;
             return _context.abrupt("return", {
               addresses: addresses
             });
 
-          case 6:
+          case 5:
           case "end":
             return _context.stop();
         }
