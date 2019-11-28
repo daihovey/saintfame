@@ -172,6 +172,32 @@ function parseLogs(logs, contract) {
   });
 }
 
+const getFinances = async () => {
+  let YO = `http://api.etherscan.io/api?module=account&action=tokentx&address=${DAO}&startblock=8972891&endblock=latest&sort=asc&apikey=${API_KEY}`;
+  const result = await axios__WEBPACK_IMPORTED_MODULE_5___default.a.get(YO);
+  const data = result.data.result;
+  const filtered = data.filter(function (log) {
+    return log.from !== DAO;
+  });
+  const transfers = filtered.map(function (log) {
+    console.log(`log\n`, log);
+    var date = new Date(log.timeStamp * 1000);
+    var dateString = date.toUTCString();
+    dateString = dateString.substring(0, dateString.indexOf('GMT')) + 'UTC';
+    let wei = ethers__WEBPACK_IMPORTED_MODULE_3__["ethers"].utils.bigNumberify(log.value);
+    const value = ethers__WEBPACK_IMPORTED_MODULE_3__["ethers"].utils.formatEther(wei);
+    console.log('value ', value);
+    const finance = {
+      time: dateString,
+      value: value
+    };
+    return finance;
+  });
+  return {
+    transfers
+  };
+};
+
 const getAddresses = async () => {
   // prettier-ignore
   const abi = [{
@@ -637,26 +663,26 @@ const Home = ({
     key: address,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 60
+      lineNumber: 99
     },
     __self: undefined
   }, address));
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 63
+      lineNumber: 102
     },
     __self: undefined
   }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_4___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 64
+      lineNumber: 103
     },
     __self: undefined
   }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 65
+      lineNumber: 104
     },
     __self: undefined
   }, "DAOSCIPLES"), __jsx("meta", {
@@ -664,19 +690,19 @@ const Home = ({
     content: "initial-scale=1.0, width=device-width",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 66
+      lineNumber: 105
     },
     __self: undefined
   })), __jsx("h1", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 71
+      lineNumber: 110
     },
     __self: undefined
   }, "$AINT TOKEN HOLDERS"), __jsx("ul", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 72
+      lineNumber: 111
     },
     __self: undefined
   }, listItems));
@@ -686,6 +712,7 @@ Home.getInitialProps = async ({
   req
 }) => {
   const addresses = await getAddresses();
+  const finances = await getFinances();
   return {
     addresses
   };

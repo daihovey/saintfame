@@ -7212,16 +7212,68 @@ function parseLogs(logs, contract) {
   });
 }
 
-var getAddresses =
+var getFinances =
 /*#__PURE__*/
 function () {
   var _ref = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
   /*#__PURE__*/
   _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-    var abi, contractAddress, contract, YO, result, logs, addresses;
+    var YO, result, data, filtered, transfers;
     return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
+          case 0:
+            YO = "http://api.etherscan.io/api?module=account&action=tokentx&address=".concat(DAO, "&startblock=8972891&endblock=latest&sort=asc&apikey=").concat(API_KEY);
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_7___default.a.get(YO);
+
+          case 3:
+            result = _context.sent;
+            data = result.data.result;
+            filtered = data.filter(function (log) {
+              return log.from !== DAO;
+            });
+            transfers = filtered.map(function (log) {
+              console.log("log\n", log);
+              var date = new Date(log.timeStamp * 1000);
+              var dateString = date.toUTCString();
+              dateString = dateString.substring(0, dateString.indexOf('GMT')) + 'UTC';
+              var wei = ethers__WEBPACK_IMPORTED_MODULE_5__["ethers"].utils.bigNumberify(log.value);
+              var value = ethers__WEBPACK_IMPORTED_MODULE_5__["ethers"].utils.formatEther(wei);
+              console.log('value ', value);
+              var finance = {
+                time: dateString,
+                value: value
+              };
+              return finance;
+            });
+            return _context.abrupt("return", {
+              transfers: transfers
+            });
+
+          case 8:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function getFinances() {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var getAddresses =
+/*#__PURE__*/
+function () {
+  var _ref2 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  /*#__PURE__*/
+  _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+    var abi, contractAddress, contract, YO, result, logs, addresses;
+    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
           case 0:
             // prettier-ignore
             abi = [{
@@ -7672,38 +7724,38 @@ function () {
             contractAddress = '0xD275B1550E8ca8Da84c552ACa9313Ec4a5B9bD07';
             contract = new ethers__WEBPACK_IMPORTED_MODULE_5__["ethers"].Contract(contractAddress, abi, new ethers__WEBPACK_IMPORTED_MODULE_5__["ethers"].providers.JsonRpcProvider());
             YO = "https://api.etherscan.io/api?module=logs&action=getLogs&fromBlock=8960961&toBlock=latest&address=".concat(SAINT_TOKEN, "&apikey=").concat(API_KEY);
-            _context.next = 6;
+            _context2.next = 6;
             return axios__WEBPACK_IMPORTED_MODULE_7___default.a.get(YO);
 
           case 6:
-            result = _context.sent;
+            result = _context2.sent;
             logs = parseLogs(result.data.result, contract);
             addresses = logs.map(function (log) {
               return log.values['_to'] + '\n';
             });
-            return _context.abrupt("return", addresses);
+            return _context2.abrupt("return", addresses);
 
           case 10:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
       }
-    }, _callee);
+    }, _callee2);
   }));
 
   return function getAddresses() {
-    return _ref.apply(this, arguments);
+    return _ref2.apply(this, arguments);
   };
 }();
 
-var Home = function Home(_ref2) {
-  var addresses = _ref2.addresses;
+var Home = function Home(_ref3) {
+  var addresses = _ref3.addresses;
   var listItems = addresses.map(function (address) {
     return __jsx("li", {
       key: address,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 60
+        lineNumber: 99
       },
       __self: this
     }, address);
@@ -7711,19 +7763,19 @@ var Home = function Home(_ref2) {
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 63
+      lineNumber: 102
     },
     __self: this
   }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_6___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 64
+      lineNumber: 103
     },
     __self: this
   }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 65
+      lineNumber: 104
     },
     __self: this
   }, "DAOSCIPLES"), __jsx("meta", {
@@ -7731,19 +7783,19 @@ var Home = function Home(_ref2) {
     content: "initial-scale=1.0, width=device-width",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 66
+      lineNumber: 105
     },
     __self: this
   })), __jsx("h1", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 71
+      lineNumber: 110
     },
     __self: this
   }, "$AINT TOKEN HOLDERS"), __jsx("ul", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 72
+      lineNumber: 111
     },
     __self: this
   }, listItems));
@@ -7752,34 +7804,39 @@ var Home = function Home(_ref2) {
 Home.getInitialProps =
 /*#__PURE__*/
 function () {
-  var _ref4 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  var _ref5 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
   /*#__PURE__*/
-  _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref3) {
-    var req, addresses;
-    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+  _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref4) {
+    var req, addresses, finances;
+    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
-            req = _ref3.req;
-            _context2.next = 3;
+            req = _ref4.req;
+            _context3.next = 3;
             return getAddresses();
 
           case 3:
-            addresses = _context2.sent;
-            return _context2.abrupt("return", {
+            addresses = _context3.sent;
+            _context3.next = 6;
+            return getFinances();
+
+          case 6:
+            finances = _context3.sent;
+            return _context3.abrupt("return", {
               addresses: addresses
             });
 
-          case 5:
+          case 8:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2);
+    }, _callee3);
   }));
 
   return function (_x) {
-    return _ref4.apply(this, arguments);
+    return _ref5.apply(this, arguments);
   };
 }();
 
