@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -134,6 +134,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ethers__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(ethers__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/head */ "next/head");
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
 
 
 var _jsxFileName = "/Users/davidhovey/SaintFame/saintfame/pages/index.tsx";
@@ -142,11 +144,14 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
 
 
+const API_KEY = 'X3SIP83C2DJ8VRBYIF9NSUKRBRGHI6DX22';
+const DAO = '0xf739c4d15854cab9874e24a4d1ec084dcaf1f13f';
+const SAINT_TOKEN = '0xD275B1550E8ca8Da84c552ACa9313Ec4a5B9bD07';
+const BOI_TOKEN = '0x439ce375e3ee4dc203d71958beca3c0f417d65cb';
+
 function parseLogs(logs, contract) {
   let iface = new ethers__WEBPACK_IMPORTED_MODULE_3__["ethers"].utils.Interface(contract.interface.abi);
-  return logs.map(log => {
-    return iface.parseLog(log);
-  }).map(item => {
+  return logs.map(log => iface.parseLog(log)).map(item => {
     let result = {
       name: item.name,
       signature: item.signature,
@@ -167,118 +172,7 @@ function parseLogs(logs, contract) {
   });
 }
 
-const provider = new ethers__WEBPACK_IMPORTED_MODULE_3__["ethers"].providers.JsonRpcProvider('https://mainnet.infura.io/v3/ab962fb32dfc49a8ab6ab72a6a318c85');
-
-const getFinances = () => {
-  // prettier-ignore
-  const abi = [{
-    "constant": true,
-    "inputs": [],
-    "name": "proxyType",
-    "outputs": [{
-      "name": "proxyTypeId",
-      "type": "uint256"
-    }],
-    "payable": false,
-    "stateMutability": "pure",
-    "type": "function"
-  }, {
-    "constant": true,
-    "inputs": [],
-    "name": "isDepositable",
-    "outputs": [{
-      "name": "",
-      "type": "bool"
-    }],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  }, {
-    "constant": true,
-    "inputs": [],
-    "name": "implementation",
-    "outputs": [{
-      "name": "",
-      "type": "address"
-    }],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  }, {
-    "constant": true,
-    "inputs": [],
-    "name": "appId",
-    "outputs": [{
-      "name": "",
-      "type": "bytes32"
-    }],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  }, {
-    "constant": true,
-    "inputs": [],
-    "name": "kernel",
-    "outputs": [{
-      "name": "",
-      "type": "address"
-    }],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  }, {
-    "inputs": [{
-      "name": "_kernel",
-      "type": "address"
-    }, {
-      "name": "_appId",
-      "type": "bytes32"
-    }, {
-      "name": "_initializePayload",
-      "type": "bytes"
-    }],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  }, {
-    "payable": true,
-    "stateMutability": "payable",
-    "type": "fallback"
-  }, {
-    "anonymous": false,
-    "inputs": [{
-      "indexed": false,
-      "name": "sender",
-      "type": "address"
-    }, {
-      "indexed": false,
-      "name": "value",
-      "type": "uint256"
-    }],
-    "name": "ProxyDeposit",
-    "type": "event"
-  }];
-  let contractAddress = '0xf739C4d15854CaB9874E24a4D1Ec084DCAF1F13F';
-  let contract = new ethers__WEBPACK_IMPORTED_MODULE_3__["ethers"].Contract(contractAddress, abi, new ethers__WEBPACK_IMPORTED_MODULE_3__["ethers"].providers.JsonRpcProvider());
-  let filter = {
-    address: contractAddress,
-    fromBlock: 8972891,
-    // Block of Contract's first transaction
-    toBlock: 'latest',
-    topics: []
-  };
-  return provider.getLogs(filter).then(result => {
-    console.log('finances = ', result);
-    const logs = parseLogs(result, contract);
-    console.log('finances = ', logs); // const addresses: string[] = logs.map(function(log) {
-    //     return log.values['_to'] + '\n'
-    // })
-
-    return [];
-  });
-};
-
-const getAddresses = () => {
+const getAddresses = async () => {
   // prettier-ignore
   const abi = [{
     "constant": true,
@@ -727,21 +621,13 @@ const getAddresses = () => {
   }];
   let contractAddress = '0xD275B1550E8ca8Da84c552ACa9313Ec4a5B9bD07';
   let contract = new ethers__WEBPACK_IMPORTED_MODULE_3__["ethers"].Contract(contractAddress, abi, new ethers__WEBPACK_IMPORTED_MODULE_3__["ethers"].providers.JsonRpcProvider());
-  let filter = {
-    address: contractAddress,
-    fromBlock: 8960961,
-    // Block of Contract's first transaction
-    toBlock: 'latest',
-    topics: []
-  };
-  return provider.getLogs(filter).then(result => {
-    // console.log('address = ', result)
-    const logs = parseLogs(result, contract);
-    const addresses = logs.map(function (log) {
-      return log.values['_to'] + '\n';
-    });
-    return addresses;
+  let YO = `https://api.etherscan.io/api?module=logs&action=getLogs&fromBlock=8960961&toBlock=latest&address=${SAINT_TOKEN}&apikey=${API_KEY}`;
+  const result = await axios__WEBPACK_IMPORTED_MODULE_5___default.a.get(YO);
+  const logs = parseLogs(result.data.result, contract);
+  const addresses = logs.map(function (log) {
+    return log.values['_to'] + '\n';
   });
+  return addresses;
 };
 
 const Home = ({
@@ -751,26 +637,26 @@ const Home = ({
     key: address,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 102
+      lineNumber: 60
     },
     __self: undefined
   }, address));
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 105
+      lineNumber: 63
     },
     __self: undefined
   }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_4___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 106
+      lineNumber: 64
     },
     __self: undefined
   }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 107
+      lineNumber: 65
     },
     __self: undefined
   }, "DAOSCIPLES"), __jsx("meta", {
@@ -778,19 +664,19 @@ const Home = ({
     content: "initial-scale=1.0, width=device-width",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 108
+      lineNumber: 66
     },
     __self: undefined
   })), __jsx("h1", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 113
+      lineNumber: 71
     },
     __self: undefined
   }, "$AINT TOKEN HOLDERS"), __jsx("ul", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 114
+      lineNumber: 72
     },
     __self: undefined
   }, listItems));
@@ -799,8 +685,7 @@ const Home = ({
 Home.getInitialProps = async ({
   req
 }) => {
-  const addresses = await getAddresses(); //  const finances = await getFinances()
-
+  const addresses = await getAddresses();
   return {
     addresses
   };
@@ -810,7 +695,7 @@ Home.getInitialProps = async ({
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!*******************************!*\
   !*** multi ./pages/index.tsx ***!
   \*******************************/
@@ -819,6 +704,17 @@ Home.getInitialProps = async ({
 
 module.exports = __webpack_require__(/*! /Users/davidhovey/SaintFame/saintfame/pages/index.tsx */"./pages/index.tsx");
 
+
+/***/ }),
+
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("axios");
 
 /***/ }),
 
