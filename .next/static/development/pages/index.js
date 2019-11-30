@@ -22,6 +22,17 @@ module.exports = __webpack_require__(/*! core-js/library/fn/array/is-array */ ".
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/get-iterator */ "./node_modules/core-js/library/fn/get-iterator.js");
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs2/core-js/is-iterable.js":
 /*!********************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/core-js/is-iterable.js ***!
@@ -2267,6 +2278,20 @@ module.exports = __webpack_require__(/*! ../../modules/_core */ "./node_modules/
 
 __webpack_require__(/*! ../../modules/es6.array.is-array */ "./node_modules/core-js/library/modules/es6.array.is-array.js");
 module.exports = __webpack_require__(/*! ../../modules/_core */ "./node_modules/core-js/library/modules/_core.js").Array.isArray;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/library/fn/get-iterator.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/library/fn/get-iterator.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ../modules/web.dom.iterable */ "./node_modules/core-js/library/modules/web.dom.iterable.js");
+__webpack_require__(/*! ../modules/es6.string.iterator */ "./node_modules/core-js/library/modules/es6.string.iterator.js");
+module.exports = __webpack_require__(/*! ../modules/core.get-iterator */ "./node_modules/core-js/library/modules/core.get-iterator.js");
 
 
 /***/ }),
@@ -4738,6 +4763,24 @@ module.exports = __webpack_require__(/*! ./_core */ "./node_modules/core-js/libr
 
 /***/ }),
 
+/***/ "./node_modules/core-js/library/modules/core.get-iterator.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/core-js/library/modules/core.get-iterator.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var anObject = __webpack_require__(/*! ./_an-object */ "./node_modules/core-js/library/modules/_an-object.js");
+var get = __webpack_require__(/*! ./core.get-iterator-method */ "./node_modules/core-js/library/modules/core.get-iterator-method.js");
+module.exports = __webpack_require__(/*! ./_core */ "./node_modules/core-js/library/modules/_core.js").getIterator = function (it) {
+  var iterFn = get(it);
+  if (typeof iterFn != 'function') throw TypeError(it + ' is not iterable!');
+  return anObject(iterFn.call(it));
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/library/modules/core.is-iterable.js":
 /*!******************************************************************!*\
   !*** ./node_modules/core-js/library/modules/core.is-iterable.js ***!
@@ -7157,38 +7200,579 @@ module.exports = g;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/regenerator */ "./node_modules/@babel/runtime-corejs2/regenerator/index.js");
-/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime-corejs2/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/values */ "./node_modules/@babel/runtime-corejs2/core-js/object/values.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var ethers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ethers */ "./node_modules/ethers/dist/ethers.min.js");
-/* harmony import */ var ethers__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(ethers__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! next/head */ "./node_modules/next/dist/next-server/lib/head.js");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/get-iterator */ "./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/regenerator */ "./node_modules/@babel/runtime-corejs2/regenerator/index.js");
+/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime-corejs2/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/values */ "./node_modules/@babel/runtime-corejs2/core-js/object/values.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var ethers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ethers */ "./node_modules/ethers/dist/ethers.min.js");
+/* harmony import */ var ethers__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(ethers__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! next/head */ "./node_modules/next/dist/next-server/lib/head.js");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_8__);
+
 
 
 
 
 var _jsxFileName = "/Users/davidhovey/SaintFame/saintfame/pages/index.tsx";
 
-var __jsx = react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement;
+var __jsx = react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement;
 
 
 
 var API_KEY = 'X3SIP83C2DJ8VRBYIF9NSUKRBRGHI6DX22';
 var DAO = '0xf739c4d15854cab9874e24a4d1ec084dcaf1f13f';
-var SAINT_TOKEN = '0xD275B1550E8ca8Da84c552ACa9313Ec4a5B9bD07';
-var BOI_TOKEN = '0x439ce375e3ee4dc203d71958beca3c0f417d65cb';
+var FINANCES_ENDPOINT = "http://api.etherscan.io/api?module=account&action=tokentx&address=".concat(DAO, "&startblock=8972891&endblock=latest&sort=asc&apikey=").concat(API_KEY);
+var provider = new ethers__WEBPACK_IMPORTED_MODULE_6__["ethers"].providers.EtherscanProvider('mainnet', API_KEY); // prettier-ignore
+
+var addressContractABI = [{
+  "constant": true,
+  "inputs": [],
+  "name": "name",
+  "outputs": [{
+    "name": "",
+    "type": "string"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [{
+    "name": "_spender",
+    "type": "address"
+  }, {
+    "name": "_amount",
+    "type": "uint256"
+  }],
+  "name": "approve",
+  "outputs": [{
+    "name": "success",
+    "type": "bool"
+  }],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "creationBlock",
+  "outputs": [{
+    "name": "",
+    "type": "uint256"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "totalSupply",
+  "outputs": [{
+    "name": "",
+    "type": "uint256"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [{
+    "name": "_from",
+    "type": "address"
+  }, {
+    "name": "_to",
+    "type": "address"
+  }, {
+    "name": "_amount",
+    "type": "uint256"
+  }],
+  "name": "transferFrom",
+  "outputs": [{
+    "name": "success",
+    "type": "bool"
+  }],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "decimals",
+  "outputs": [{
+    "name": "",
+    "type": "uint8"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [{
+    "name": "_newController",
+    "type": "address"
+  }],
+  "name": "changeController",
+  "outputs": [],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [{
+    "name": "_owner",
+    "type": "address"
+  }, {
+    "name": "_blockNumber",
+    "type": "uint256"
+  }],
+  "name": "balanceOfAt",
+  "outputs": [{
+    "name": "",
+    "type": "uint256"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "version",
+  "outputs": [{
+    "name": "",
+    "type": "string"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [{
+    "name": "_cloneTokenName",
+    "type": "string"
+  }, {
+    "name": "_cloneDecimalUnits",
+    "type": "uint8"
+  }, {
+    "name": "_cloneTokenSymbol",
+    "type": "string"
+  }, {
+    "name": "_snapshotBlock",
+    "type": "uint256"
+  }, {
+    "name": "_transfersEnabled",
+    "type": "bool"
+  }],
+  "name": "createCloneToken",
+  "outputs": [{
+    "name": "",
+    "type": "address"
+  }],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [{
+    "name": "_owner",
+    "type": "address"
+  }],
+  "name": "balanceOf",
+  "outputs": [{
+    "name": "balance",
+    "type": "uint256"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "parentToken",
+  "outputs": [{
+    "name": "",
+    "type": "address"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [{
+    "name": "_owner",
+    "type": "address"
+  }, {
+    "name": "_amount",
+    "type": "uint256"
+  }],
+  "name": "generateTokens",
+  "outputs": [{
+    "name": "",
+    "type": "bool"
+  }],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "symbol",
+  "outputs": [{
+    "name": "",
+    "type": "string"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [{
+    "name": "_blockNumber",
+    "type": "uint256"
+  }],
+  "name": "totalSupplyAt",
+  "outputs": [{
+    "name": "",
+    "type": "uint256"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [{
+    "name": "_to",
+    "type": "address"
+  }, {
+    "name": "_amount",
+    "type": "uint256"
+  }],
+  "name": "transfer",
+  "outputs": [{
+    "name": "success",
+    "type": "bool"
+  }],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "transfersEnabled",
+  "outputs": [{
+    "name": "",
+    "type": "bool"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "parentSnapShotBlock",
+  "outputs": [{
+    "name": "",
+    "type": "uint256"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [{
+    "name": "_spender",
+    "type": "address"
+  }, {
+    "name": "_amount",
+    "type": "uint256"
+  }, {
+    "name": "_extraData",
+    "type": "bytes"
+  }],
+  "name": "approveAndCall",
+  "outputs": [{
+    "name": "success",
+    "type": "bool"
+  }],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [{
+    "name": "_owner",
+    "type": "address"
+  }, {
+    "name": "_amount",
+    "type": "uint256"
+  }],
+  "name": "destroyTokens",
+  "outputs": [{
+    "name": "",
+    "type": "bool"
+  }],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [{
+    "name": "_owner",
+    "type": "address"
+  }, {
+    "name": "_spender",
+    "type": "address"
+  }],
+  "name": "allowance",
+  "outputs": [{
+    "name": "remaining",
+    "type": "uint256"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [{
+    "name": "_token",
+    "type": "address"
+  }],
+  "name": "claimTokens",
+  "outputs": [],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "tokenFactory",
+  "outputs": [{
+    "name": "",
+    "type": "address"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [{
+    "name": "_transfersEnabled",
+    "type": "bool"
+  }],
+  "name": "enableTransfers",
+  "outputs": [],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "controller",
+  "outputs": [{
+    "name": "",
+    "type": "address"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "inputs": [{
+    "name": "_tokenFactory",
+    "type": "address"
+  }, {
+    "name": "_parentToken",
+    "type": "address"
+  }, {
+    "name": "_parentSnapShotBlock",
+    "type": "uint256"
+  }, {
+    "name": "_tokenName",
+    "type": "string"
+  }, {
+    "name": "_decimalUnits",
+    "type": "uint8"
+  }, {
+    "name": "_tokenSymbol",
+    "type": "string"
+  }, {
+    "name": "_transfersEnabled",
+    "type": "bool"
+  }],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "constructor"
+}, {
+  "payable": true,
+  "stateMutability": "payable",
+  "type": "fallback"
+}, {
+  "anonymous": false,
+  "inputs": [{
+    "indexed": true,
+    "name": "_token",
+    "type": "address"
+  }, {
+    "indexed": true,
+    "name": "_controller",
+    "type": "address"
+  }, {
+    "indexed": false,
+    "name": "_amount",
+    "type": "uint256"
+  }],
+  "name": "ClaimedTokens",
+  "type": "event"
+}, {
+  "anonymous": false,
+  "inputs": [{
+    "indexed": true,
+    "name": "_from",
+    "type": "address"
+  }, {
+    "indexed": true,
+    "name": "_to",
+    "type": "address"
+  }, {
+    "indexed": false,
+    "name": "_amount",
+    "type": "uint256"
+  }],
+  "name": "Transfer",
+  "type": "event"
+}, {
+  "anonymous": false,
+  "inputs": [{
+    "indexed": true,
+    "name": "_cloneToken",
+    "type": "address"
+  }, {
+    "indexed": false,
+    "name": "_snapshotBlock",
+    "type": "uint256"
+  }],
+  "name": "NewCloneToken",
+  "type": "event"
+}, {
+  "anonymous": false,
+  "inputs": [{
+    "indexed": true,
+    "name": "_owner",
+    "type": "address"
+  }, {
+    "indexed": true,
+    "name": "_spender",
+    "type": "address"
+  }, {
+    "indexed": false,
+    "name": "_amount",
+    "type": "uint256"
+  }],
+  "name": "Approval",
+  "type": "event"
+}];
+var addressContractAddress = '0xD275B1550E8ca8Da84c552ACa9313Ec4a5B9bD07';
+var addressContract = new ethers__WEBPACK_IMPORTED_MODULE_6__["ethers"].Contract(addressContractAddress, addressContractABI, new ethers__WEBPACK_IMPORTED_MODULE_6__["ethers"].providers.JsonRpcProvider()); // prettier-ignore
+
+var financeContractABI = [{
+  "constant": true,
+  "inputs": [],
+  "name": "proxyType",
+  "outputs": [{
+    "name": "proxyTypeId",
+    "type": "uint256"
+  }],
+  "payable": false,
+  "stateMutability": "pure",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "isDepositable",
+  "outputs": [{
+    "name": "",
+    "type": "bool"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "implementation",
+  "outputs": [{
+    "name": "",
+    "type": "address"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "appId",
+  "outputs": [{
+    "name": "",
+    "type": "bytes32"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "kernel",
+  "outputs": [{
+    "name": "",
+    "type": "address"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "inputs": [{
+    "name": "_kernel",
+    "type": "address"
+  }, {
+    "name": "_appId",
+    "type": "bytes32"
+  }, {
+    "name": "_initializePayload",
+    "type": "bytes"
+  }],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "constructor"
+}, {
+  "payable": true,
+  "stateMutability": "payable",
+  "type": "fallback"
+}, {
+  "anonymous": false,
+  "inputs": [{
+    "indexed": false,
+    "name": "sender",
+    "type": "address"
+  }, {
+    "indexed": false,
+    "name": "value",
+    "type": "uint256"
+  }],
+  "name": "ProxyDeposit",
+  "type": "event"
+}];
+var financeAddress = '0xf739C4d15854CaB9874E24a4D1Ec084DCAF1F13F';
+var financeContract = new ethers__WEBPACK_IMPORTED_MODULE_6__["ethers"].Contract(financeAddress, financeContractABI, new ethers__WEBPACK_IMPORTED_MODULE_6__["ethers"].providers.JsonRpcProvider());
 
 function parseLogs(logs, contract) {
-  var iface = new ethers__WEBPACK_IMPORTED_MODULE_5__["ethers"].utils.Interface(contract["interface"].abi);
+  var iface = new ethers__WEBPACK_IMPORTED_MODULE_6__["ethers"].utils.Interface(contract["interface"].abi);
   return logs.map(function (log) {
     return iface.parseLog(log);
   }).map(function (item) {
@@ -7198,9 +7782,9 @@ function parseLogs(logs, contract) {
       values: {}
     };
 
-    var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_3___default()(item.values);
+    var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_4___default()(item.values);
 
-    var values = _babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_2___default()(item.values);
+    var values = _babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_3___default()(item.values);
 
     var start = item.values.length;
 
@@ -7212,46 +7796,34 @@ function parseLogs(logs, contract) {
   });
 }
 
-var getFinances =
+var getFinanceTransactions =
 /*#__PURE__*/
 function () {
-  var _ref = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  var _ref = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])(
   /*#__PURE__*/
-  _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-    var YO, result, data, filtered, transfers;
-    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+  _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee(transactionHash) {
+    var tx, abi, iface, transaction, referenceString, inputData;
+    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            YO = "http://api.etherscan.io/api?module=account&action=tokentx&address=".concat(DAO, "&startblock=8972891&endblock=latest&sort=asc&apikey=").concat(API_KEY);
-            _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_7___default.a.get(YO);
+            _context.next = 2;
+            return provider.getTransaction(transactionHash);
 
-          case 3:
-            result = _context.sent;
-            data = result.data.result;
-            filtered = data.filter(function (log) {
-              return log.from !== DAO;
-            });
-            transfers = filtered.map(function (log) {
-              console.log("log\n", log);
-              var date = new Date(log.timeStamp * 1000);
-              var dateString = date.toUTCString();
-              dateString = dateString.substring(0, dateString.indexOf('GMT')) + 'UTC';
-              var wei = ethers__WEBPACK_IMPORTED_MODULE_5__["ethers"].utils.bigNumberify(log.value);
-              var value = ethers__WEBPACK_IMPORTED_MODULE_5__["ethers"].utils.formatEther(wei);
-              console.log('value ', value);
-              var finance = {
-                time: dateString,
-                value: value
-              };
-              return finance;
-            });
-            return _context.abrupt("return", {
-              transfers: transfers
-            });
+          case 2:
+            tx = _context.sent;
+            //Function: deposit(address _token, uint256 _amount, string _reference)
+            abi = ['deposit(address _token, uint256 _amount, string _reference)'];
+            iface = new ethers__WEBPACK_IMPORTED_MODULE_6__["ethers"].utils.Interface(abi);
+            transaction = iface.parseTransaction(tx);
+            referenceString = transaction.args[2];
+            inputData = {
+              reference: referenceString,
+              fromAddress: tx.from
+            };
+            return _context.abrupt("return", inputData);
 
-          case 8:
+          case 9:
           case "end":
             return _context.stop();
         }
@@ -7259,503 +7831,178 @@ function () {
     }, _callee);
   }));
 
-  return function getFinances() {
+  return function getFinanceTransactions(_x) {
     return _ref.apply(this, arguments);
+  };
+}();
+
+var getFinances =
+/*#__PURE__*/
+function () {
+  var _ref2 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  /*#__PURE__*/
+  _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee2() {
+    var transfers, result, data, filtered, parsedTransfers, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, parsed, inputData, transfer;
+
+    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            transfers = [];
+            _context2.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_8___default.a.get(FINANCES_ENDPOINT);
+
+          case 3:
+            result = _context2.sent;
+            data = result.data.result; // Don't show transfers from DAO, only incomming
+
+            filtered = data.filter(function (log) {
+              return log.from !== DAO;
+            });
+            parsedTransfers = filtered.map(function (log) {
+              var date = new Date(log.timeStamp * 1000);
+              var dateString = date.toLocaleDateString();
+              var wei = ethers__WEBPACK_IMPORTED_MODULE_6__["ethers"].utils.bigNumberify(log.value);
+              var amount = ethers__WEBPACK_IMPORTED_MODULE_6__["ethers"].utils.formatEther(wei) + ' ' + log.tokenSymbol;
+              var transactionHash = log.hash;
+              var parsed = {
+                time: dateString,
+                amount: amount,
+                hash: transactionHash
+              };
+              return parsed;
+            });
+            _iteratorNormalCompletion = true;
+            _didIteratorError = false;
+            _iteratorError = undefined;
+            _context2.prev = 10;
+            _iterator = _babel_runtime_corejs2_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default()(parsedTransfers);
+
+          case 12:
+            if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
+              _context2.next = 22;
+              break;
+            }
+
+            parsed = _step.value;
+            _context2.next = 16;
+            return getFinanceTransactions(parsed.hash);
+
+          case 16:
+            inputData = _context2.sent;
+            transfer = {
+              time: parsed.time,
+              amount: parsed.amount,
+              reference: inputData.reference,
+              address: inputData.fromAddress
+            };
+            transfers.push(transfer);
+
+          case 19:
+            _iteratorNormalCompletion = true;
+            _context2.next = 12;
+            break;
+
+          case 22:
+            _context2.next = 28;
+            break;
+
+          case 24:
+            _context2.prev = 24;
+            _context2.t0 = _context2["catch"](10);
+            _didIteratorError = true;
+            _iteratorError = _context2.t0;
+
+          case 28:
+            _context2.prev = 28;
+            _context2.prev = 29;
+
+            if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+              _iterator["return"]();
+            }
+
+          case 31:
+            _context2.prev = 31;
+
+            if (!_didIteratorError) {
+              _context2.next = 34;
+              break;
+            }
+
+            throw _iteratorError;
+
+          case 34:
+            return _context2.finish(31);
+
+          case 35:
+            return _context2.finish(28);
+
+          case 36:
+            return _context2.abrupt("return", transfers);
+
+          case 37:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[10, 24, 28, 36], [29,, 31, 35]]);
+  }));
+
+  return function getFinances() {
+    return _ref2.apply(this, arguments);
   };
 }();
 
 var getAddresses =
 /*#__PURE__*/
 function () {
-  var _ref2 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  var _ref3 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])(
   /*#__PURE__*/
-  _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-    var abi, contractAddress, contract, YO, result, logs, addresses;
-    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+  _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee3() {
+    var filter, logs, parsedLogs, addresses;
+    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
-            // prettier-ignore
-            abi = [{
-              "constant": true,
-              "inputs": [],
-              "name": "name",
-              "outputs": [{
-                "name": "",
-                "type": "string"
-              }],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            }, {
-              "constant": false,
-              "inputs": [{
-                "name": "_spender",
-                "type": "address"
-              }, {
-                "name": "_amount",
-                "type": "uint256"
-              }],
-              "name": "approve",
-              "outputs": [{
-                "name": "success",
-                "type": "bool"
-              }],
-              "payable": false,
-              "stateMutability": "nonpayable",
-              "type": "function"
-            }, {
-              "constant": true,
-              "inputs": [],
-              "name": "creationBlock",
-              "outputs": [{
-                "name": "",
-                "type": "uint256"
-              }],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            }, {
-              "constant": true,
-              "inputs": [],
-              "name": "totalSupply",
-              "outputs": [{
-                "name": "",
-                "type": "uint256"
-              }],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            }, {
-              "constant": false,
-              "inputs": [{
-                "name": "_from",
-                "type": "address"
-              }, {
-                "name": "_to",
-                "type": "address"
-              }, {
-                "name": "_amount",
-                "type": "uint256"
-              }],
-              "name": "transferFrom",
-              "outputs": [{
-                "name": "success",
-                "type": "bool"
-              }],
-              "payable": false,
-              "stateMutability": "nonpayable",
-              "type": "function"
-            }, {
-              "constant": true,
-              "inputs": [],
-              "name": "decimals",
-              "outputs": [{
-                "name": "",
-                "type": "uint8"
-              }],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            }, {
-              "constant": false,
-              "inputs": [{
-                "name": "_newController",
-                "type": "address"
-              }],
-              "name": "changeController",
-              "outputs": [],
-              "payable": false,
-              "stateMutability": "nonpayable",
-              "type": "function"
-            }, {
-              "constant": true,
-              "inputs": [{
-                "name": "_owner",
-                "type": "address"
-              }, {
-                "name": "_blockNumber",
-                "type": "uint256"
-              }],
-              "name": "balanceOfAt",
-              "outputs": [{
-                "name": "",
-                "type": "uint256"
-              }],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            }, {
-              "constant": true,
-              "inputs": [],
-              "name": "version",
-              "outputs": [{
-                "name": "",
-                "type": "string"
-              }],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            }, {
-              "constant": false,
-              "inputs": [{
-                "name": "_cloneTokenName",
-                "type": "string"
-              }, {
-                "name": "_cloneDecimalUnits",
-                "type": "uint8"
-              }, {
-                "name": "_cloneTokenSymbol",
-                "type": "string"
-              }, {
-                "name": "_snapshotBlock",
-                "type": "uint256"
-              }, {
-                "name": "_transfersEnabled",
-                "type": "bool"
-              }],
-              "name": "createCloneToken",
-              "outputs": [{
-                "name": "",
-                "type": "address"
-              }],
-              "payable": false,
-              "stateMutability": "nonpayable",
-              "type": "function"
-            }, {
-              "constant": true,
-              "inputs": [{
-                "name": "_owner",
-                "type": "address"
-              }],
-              "name": "balanceOf",
-              "outputs": [{
-                "name": "balance",
-                "type": "uint256"
-              }],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            }, {
-              "constant": true,
-              "inputs": [],
-              "name": "parentToken",
-              "outputs": [{
-                "name": "",
-                "type": "address"
-              }],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            }, {
-              "constant": false,
-              "inputs": [{
-                "name": "_owner",
-                "type": "address"
-              }, {
-                "name": "_amount",
-                "type": "uint256"
-              }],
-              "name": "generateTokens",
-              "outputs": [{
-                "name": "",
-                "type": "bool"
-              }],
-              "payable": false,
-              "stateMutability": "nonpayable",
-              "type": "function"
-            }, {
-              "constant": true,
-              "inputs": [],
-              "name": "symbol",
-              "outputs": [{
-                "name": "",
-                "type": "string"
-              }],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            }, {
-              "constant": true,
-              "inputs": [{
-                "name": "_blockNumber",
-                "type": "uint256"
-              }],
-              "name": "totalSupplyAt",
-              "outputs": [{
-                "name": "",
-                "type": "uint256"
-              }],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            }, {
-              "constant": false,
-              "inputs": [{
-                "name": "_to",
-                "type": "address"
-              }, {
-                "name": "_amount",
-                "type": "uint256"
-              }],
-              "name": "transfer",
-              "outputs": [{
-                "name": "success",
-                "type": "bool"
-              }],
-              "payable": false,
-              "stateMutability": "nonpayable",
-              "type": "function"
-            }, {
-              "constant": true,
-              "inputs": [],
-              "name": "transfersEnabled",
-              "outputs": [{
-                "name": "",
-                "type": "bool"
-              }],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            }, {
-              "constant": true,
-              "inputs": [],
-              "name": "parentSnapShotBlock",
-              "outputs": [{
-                "name": "",
-                "type": "uint256"
-              }],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            }, {
-              "constant": false,
-              "inputs": [{
-                "name": "_spender",
-                "type": "address"
-              }, {
-                "name": "_amount",
-                "type": "uint256"
-              }, {
-                "name": "_extraData",
-                "type": "bytes"
-              }],
-              "name": "approveAndCall",
-              "outputs": [{
-                "name": "success",
-                "type": "bool"
-              }],
-              "payable": false,
-              "stateMutability": "nonpayable",
-              "type": "function"
-            }, {
-              "constant": false,
-              "inputs": [{
-                "name": "_owner",
-                "type": "address"
-              }, {
-                "name": "_amount",
-                "type": "uint256"
-              }],
-              "name": "destroyTokens",
-              "outputs": [{
-                "name": "",
-                "type": "bool"
-              }],
-              "payable": false,
-              "stateMutability": "nonpayable",
-              "type": "function"
-            }, {
-              "constant": true,
-              "inputs": [{
-                "name": "_owner",
-                "type": "address"
-              }, {
-                "name": "_spender",
-                "type": "address"
-              }],
-              "name": "allowance",
-              "outputs": [{
-                "name": "remaining",
-                "type": "uint256"
-              }],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            }, {
-              "constant": false,
-              "inputs": [{
-                "name": "_token",
-                "type": "address"
-              }],
-              "name": "claimTokens",
-              "outputs": [],
-              "payable": false,
-              "stateMutability": "nonpayable",
-              "type": "function"
-            }, {
-              "constant": true,
-              "inputs": [],
-              "name": "tokenFactory",
-              "outputs": [{
-                "name": "",
-                "type": "address"
-              }],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            }, {
-              "constant": false,
-              "inputs": [{
-                "name": "_transfersEnabled",
-                "type": "bool"
-              }],
-              "name": "enableTransfers",
-              "outputs": [],
-              "payable": false,
-              "stateMutability": "nonpayable",
-              "type": "function"
-            }, {
-              "constant": true,
-              "inputs": [],
-              "name": "controller",
-              "outputs": [{
-                "name": "",
-                "type": "address"
-              }],
-              "payable": false,
-              "stateMutability": "view",
-              "type": "function"
-            }, {
-              "inputs": [{
-                "name": "_tokenFactory",
-                "type": "address"
-              }, {
-                "name": "_parentToken",
-                "type": "address"
-              }, {
-                "name": "_parentSnapShotBlock",
-                "type": "uint256"
-              }, {
-                "name": "_tokenName",
-                "type": "string"
-              }, {
-                "name": "_decimalUnits",
-                "type": "uint8"
-              }, {
-                "name": "_tokenSymbol",
-                "type": "string"
-              }, {
-                "name": "_transfersEnabled",
-                "type": "bool"
-              }],
-              "payable": false,
-              "stateMutability": "nonpayable",
-              "type": "constructor"
-            }, {
-              "payable": true,
-              "stateMutability": "payable",
-              "type": "fallback"
-            }, {
-              "anonymous": false,
-              "inputs": [{
-                "indexed": true,
-                "name": "_token",
-                "type": "address"
-              }, {
-                "indexed": true,
-                "name": "_controller",
-                "type": "address"
-              }, {
-                "indexed": false,
-                "name": "_amount",
-                "type": "uint256"
-              }],
-              "name": "ClaimedTokens",
-              "type": "event"
-            }, {
-              "anonymous": false,
-              "inputs": [{
-                "indexed": true,
-                "name": "_from",
-                "type": "address"
-              }, {
-                "indexed": true,
-                "name": "_to",
-                "type": "address"
-              }, {
-                "indexed": false,
-                "name": "_amount",
-                "type": "uint256"
-              }],
-              "name": "Transfer",
-              "type": "event"
-            }, {
-              "anonymous": false,
-              "inputs": [{
-                "indexed": true,
-                "name": "_cloneToken",
-                "type": "address"
-              }, {
-                "indexed": false,
-                "name": "_snapshotBlock",
-                "type": "uint256"
-              }],
-              "name": "NewCloneToken",
-              "type": "event"
-            }, {
-              "anonymous": false,
-              "inputs": [{
-                "indexed": true,
-                "name": "_owner",
-                "type": "address"
-              }, {
-                "indexed": true,
-                "name": "_spender",
-                "type": "address"
-              }, {
-                "indexed": false,
-                "name": "_amount",
-                "type": "uint256"
-              }],
-              "name": "Approval",
-              "type": "event"
-            }];
-            contractAddress = '0xD275B1550E8ca8Da84c552ACa9313Ec4a5B9bD07';
-            contract = new ethers__WEBPACK_IMPORTED_MODULE_5__["ethers"].Contract(contractAddress, abi, new ethers__WEBPACK_IMPORTED_MODULE_5__["ethers"].providers.JsonRpcProvider());
-            YO = "https://api.etherscan.io/api?module=logs&action=getLogs&fromBlock=8960961&toBlock=latest&address=".concat(SAINT_TOKEN, "&apikey=").concat(API_KEY);
-            _context2.next = 6;
-            return axios__WEBPACK_IMPORTED_MODULE_7___default.a.get(YO);
+            filter = {
+              address: addressContractAddress,
+              fromBlock: 8960961,
+              // Block of Contract's first transaction
+              toBlock: 'latest',
+              topics: []
+            };
+            _context3.next = 3;
+            return provider.getLogs(filter);
 
-          case 6:
-            result = _context2.sent;
-            logs = parseLogs(result.data.result, contract);
-            addresses = logs.map(function (log) {
+          case 3:
+            logs = _context3.sent;
+            parsedLogs = parseLogs(logs, addressContract);
+            addresses = parsedLogs.map(function (log) {
               return log.values['_to'] + '\n';
             });
-            return _context2.abrupt("return", addresses);
+            return _context3.abrupt("return", addresses);
 
-          case 10:
+          case 7:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2);
+    }, _callee3);
   }));
 
   return function getAddresses() {
-    return _ref2.apply(this, arguments);
+    return _ref3.apply(this, arguments);
   };
 }();
 
-var Home = function Home(_ref3) {
-  var addresses = _ref3.addresses;
+var Home = function Home(_ref4) {
+  var addresses = _ref4.addresses;
   var listItems = addresses.map(function (address) {
     return __jsx("li", {
       key: address,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 99
+        lineNumber: 165
       },
       __self: this
     }, address);
@@ -7763,19 +8010,19 @@ var Home = function Home(_ref3) {
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 102
+      lineNumber: 168
     },
     __self: this
-  }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_6___default.a, {
+  }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_7___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 103
+      lineNumber: 169
     },
     __self: this
   }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 104
+      lineNumber: 170
     },
     __self: this
   }, "DAOSCIPLES"), __jsx("meta", {
@@ -7783,19 +8030,19 @@ var Home = function Home(_ref3) {
     content: "initial-scale=1.0, width=device-width",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 105
+      lineNumber: 171
     },
     __self: this
   })), __jsx("h1", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 110
+      lineNumber: 176
     },
     __self: this
   }, "$AINT TOKEN HOLDERS"), __jsx("ul", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 111
+      lineNumber: 177
     },
     __self: this
   }, listItems));
@@ -7804,39 +8051,40 @@ var Home = function Home(_ref3) {
 Home.getInitialProps =
 /*#__PURE__*/
 function () {
-  var _ref5 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  var _ref6 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])(
   /*#__PURE__*/
-  _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref4) {
+  _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee4(_ref5) {
     var req, addresses, finances;
-    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee4$(_context4) {
       while (1) {
-        switch (_context3.prev = _context3.next) {
+        switch (_context4.prev = _context4.next) {
           case 0:
-            req = _ref4.req;
-            _context3.next = 3;
+            req = _ref5.req;
+            _context4.next = 3;
             return getAddresses();
 
           case 3:
-            addresses = _context3.sent;
-            _context3.next = 6;
+            addresses = _context4.sent;
+            _context4.next = 6;
             return getFinances();
 
           case 6:
-            finances = _context3.sent;
-            return _context3.abrupt("return", {
+            finances = _context4.sent;
+            console.log(finances);
+            return _context4.abrupt("return", {
               addresses: addresses
             });
 
-          case 8:
+          case 9:
           case "end":
-            return _context3.stop();
+            return _context4.stop();
         }
       }
-    }, _callee3);
+    }, _callee4);
   }));
 
-  return function (_x) {
-    return _ref5.apply(this, arguments);
+  return function (_x2) {
+    return _ref6.apply(this, arguments);
   };
 }();
 
