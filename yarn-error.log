@@ -1,30 +1,30 @@
 Arguments: 
-  /usr/local/Cellar/node/12.7.0/bin/node /usr/local/Cellar/yarn/1.17.3/libexec/bin/yarn.js add @types/ethereum-input-data-decoder
+  /usr/local/Cellar/node/13.2.0/bin/node /usr/local/Cellar/yarn/1.19.2/libexec/bin/yarn.js add @types/react-retina-image
 
 PATH: 
   /Users/davidhovey/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 Yarn version: 
-  1.17.3
+  1.19.2
 
 Node version: 
-  12.7.0
+  13.2.0
 
 Platform: 
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fethereum-input-data-decoder: Not found
-      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:66830:18)
-      at Request.self.callback (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:140464:22)
-      at Request.emit (events.js:203:13)
-      at Request.<anonymous> (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:141436:10)
-      at Request.emit (events.js:203:13)
-      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:141358:12)
-      at Object.onceWrapper (events.js:291:20)
-      at IncomingMessage.emit (events.js:208:15)
-      at endReadableNT (_stream_readable.js:1161:12)
-      at processTicksAndRejections (internal/process/task_queues.js:77:11)
+  Error: https://registry.yarnpkg.com/@types%2freact-retina-image: Not found
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.19.2/libexec/lib/cli.js:66927:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.19.2/libexec/lib/cli.js:140586:22)
+      at Request.emit (events.js:210:5)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.19.2/libexec/lib/cli.js:141558:10)
+      at Request.emit (events.js:210:5)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.19.2/libexec/lib/cli.js:141480:12)
+      at Object.onceWrapper (events.js:299:28)
+      at IncomingMessage.emit (events.js:215:7)
+      at endReadableNT (_stream_readable.js:1200:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
 
 npm manifest: 
   {
@@ -36,8 +36,10 @@ npm manifest:
       "ethers": "^4.0.39",
       "etherscan-api": "^10.0.5",
       "next": "^9.1.4",
+      "next-images": "^1.2.0",
       "react": "^16.12.0",
       "react-dom": "^16.12.0",
+      "react-retina-image": "^2.0.5",
       "typescript": "^3.7.2"
     },
     "scripts": {
@@ -1267,6 +1269,11 @@ Lockfile:
     version "3.1.0"
     resolved "https://registry.yarnpkg.com/arr-union/-/arr-union-3.1.0.tgz#e39b09aea9def866a8f206e288af63919bae39c4"
     integrity sha1-45sJrqne+Gao8gbiiK9jkZuuOcQ=
+  
+  array-equal@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/array-equal/-/array-equal-1.0.0.tgz#8c2a5ef2472fd9ea742b04c77a75093ba2757c93"
+    integrity sha1-jCpe8kcv2ep0KwTHenUJO6J1fJM=
   
   array-find-index@^1.0.1:
     version "1.0.2"
@@ -2801,6 +2808,14 @@ Lockfile:
       loader-utils "^1.2.3"
       schema-utils "^2.0.0"
   
+  file-loader@^4.0.0:
+    version "4.3.0"
+    resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-4.3.0.tgz#780f040f729b3d18019f20605f723e844b8a58af"
+    integrity sha512-aKrYPYjF1yG3oX0kWRrqrSMfgftm7oJW5M+m4owoldH5C51C0RkIwB++JbRvEW3IU6/ZG5n8UvEcdgwOt2UOWA==
+    dependencies:
+      loader-utils "^1.2.3"
+      schema-utils "^2.5.0"
+  
   file-uri-to-path@1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/file-uri-to-path/-/file-uri-to-path-1.0.0.tgz#553a7b8446ff6f684359c445f1e37a05dacc33dd"
@@ -3243,6 +3258,11 @@ Lockfile:
     dependencies:
       minimatch "^3.0.4"
   
+  image-exists@^1.1.0:
+    version "1.1.0"
+    resolved "https://registry.yarnpkg.com/image-exists/-/image-exists-1.1.0.tgz#ba49cccbaddca8cbbf10f89cafd4d1c8ecfd38d0"
+    integrity sha1-uknMy63cqMu/EPicr9TRyOz9ONA=
+  
   import-cwd@^2.0.0:
     version "2.1.0"
     resolved "https://registry.yarnpkg.com/import-cwd/-/import-cwd-2.1.0.tgz#aa6cf36e722761285cb371ec6519f53e2435b0a9"
@@ -3505,6 +3525,11 @@ Lockfile:
     integrity sha1-VRdIm1RwkbCTDglWVM7SXul+lJE=
     dependencies:
       has "^1.0.1"
+  
+  is-retina@^1.0.3:
+    version "1.0.3"
+    resolved "https://registry.yarnpkg.com/is-retina/-/is-retina-1.0.3.tgz#d7401b286bea2ae37f62477588de504d0b8647e3"
+    integrity sha1-10AbKGvqKuN/Ykd1iN5QTQuGR+M=
   
   is-symbol@^1.0.2:
     version "1.0.3"
@@ -3941,7 +3966,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
     integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
   
-  mime@^2.4.2:
+  mime@^2.4.2, mime@^2.4.4:
     version "2.4.4"
     resolved "https://registry.yarnpkg.com/mime/-/mime-2.4.4.tgz#bd7b91135fc6b01cde3e9bae33d659b63d8857e5"
     integrity sha512-LRxmNwziLPT828z+4YkNzloCFC2YM4wrB99k+AV5ZbEyfGNWfG8SO1FUXLmLDBSo89NrJZ4DIWeLjy1CHGhMGA==
@@ -4109,6 +4134,14 @@ Lockfile:
     version "2.6.1"
     resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
     integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
+  
+  next-images@^1.2.0:
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/next-images/-/next-images-1.2.0.tgz#9bbcc4ea8787bc5ed4abc0da575a212bd75bbbd0"
+    integrity sha512-NhOiUk5StO82074KpnrcITM0OdONUu0T15Sd0VbipxHJueofKAw9zdmAejht0EhwgQDFt63+1OLFYA5web0x9w==
+    dependencies:
+      file-loader "^4.0.0"
+      url-loader "^2.0.0"
   
   next@^9.1.4:
     version "9.1.4"
@@ -5102,7 +5135,7 @@ Lockfile:
       object.assign "^4.1.0"
       reflect.ownkeys "^0.2.0"
   
-  prop-types@15.7.2, prop-types@^15.6.2, prop-types@^15.7.2:
+  prop-types@15.7.2, prop-types@^15.5.6, prop-types@^15.6.2, prop-types@^15.7.2:
     version "15.7.2"
     resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
     integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -5255,6 +5288,17 @@ Lockfile:
     version "16.12.0"
     resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
     integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
+  
+  react-retina-image@^2.0.5:
+    version "2.0.5"
+    resolved "https://registry.yarnpkg.com/react-retina-image/-/react-retina-image-2.0.5.tgz#8f92efbbd454fa688d63f35e5a21eff1ab3a062f"
+    integrity sha512-/rUMXXQgZt5TU/+i0RWhkuSWmas76fL91ox8FQJkU/sziCGemeX44Tns7ki0RoUBARSp3493Of8Em7rHnvwPJQ==
+    dependencies:
+      array-equal "^1.0.0"
+      image-exists "^1.1.0"
+      is-retina "^1.0.3"
+      object-assign "^4.1.0"
+      prop-types "^15.5.6"
   
   react@^16.12.0:
     version "16.12.0"
@@ -5527,6 +5571,14 @@ Lockfile:
     version "2.5.0"
     resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-2.5.0.tgz#8f254f618d402cc80257486213c8970edfd7c22f"
     integrity sha512-32ISrwW2scPXHUSusP8qMg5dLUawKkyV+/qIEV9JdXKx+rsM6mi8vZY8khg2M69Qom16rtroWXD3Ybtiws38gQ==
+    dependencies:
+      ajv "^6.10.2"
+      ajv-keywords "^3.4.1"
+  
+  schema-utils@^2.5.0:
+    version "2.6.1"
+    resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-2.6.1.tgz#eb78f0b945c7bcfa2082b3565e8db3548011dc4f"
+    integrity sha512-0WXHDs1VDJyo+Zqs9TKLKyD/h7yDpHUhEFsM2CzkICFdoX1av+GBq/J2xRTFfsQO5kBfhZzANf2VcIm84jqDbg==
     dependencies:
       ajv "^6.10.2"
       ajv-keywords "^3.4.1"
@@ -6224,6 +6276,15 @@ Lockfile:
     version "0.1.0"
     resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
     integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
+  
+  url-loader@^2.0.0:
+    version "2.3.0"
+    resolved "https://registry.yarnpkg.com/url-loader/-/url-loader-2.3.0.tgz#e0e2ef658f003efb8ca41b0f3ffbf76bab88658b"
+    integrity sha512-goSdg8VY+7nPZKUEChZSEtW5gjbS66USIGCeSJ1OVOJ7Yfuh/36YxCwMi5HVEJh6mqUYOoy3NJ0vlOMrWsSHog==
+    dependencies:
+      loader-utils "^1.2.3"
+      mime "^2.4.4"
+      schema-utils "^2.5.0"
   
   url@0.11.0, url@^0.11.0:
     version "0.11.0"

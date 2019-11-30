@@ -1,29 +1,12 @@
 import { NextPage } from 'next'
-import Link from 'next/link'
-import Head from 'next/head'
+import Layout from '../components/Layout'
+import React from 'react'
 
-const Home: NextPage<{}> = ({}) => {
+const Index: React.FunctionComponent = () => {
     return (
-        <div>
-            <Head>
-                <title>SAINT FAME</title>
-                <meta
-                    name="viewport"
-                    content="initial-scale=1.0, width=device-width"
-                />
-            </Head>
-            <p>
-                <Link href="/holders">
-                    <a>Holders</a>
-                </Link>
-            </p>
-            <p>
-                <Link href="/finances">
-                    <a>Finances</a>
-                </Link>
-            </p>
-        </div>
+        <Layout>
+            <h1>Derp</h1>
+        </Layout>
     )
 }
-
-export default Home
+export default Index

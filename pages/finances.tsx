@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import { ethers, Contract } from 'ethers'
-import Head from 'next/head'
 import axios from 'axios'
+import Layout from '../components/Layout'
 
 const API_KEY = 'X3SIP83C2DJ8VRBYIF9NSUKRBRGHI6DX22'
 const DAO = '0xf739c4d15854cab9874e24a4d1ec084dcaf1f13f'
@@ -117,15 +117,10 @@ const Finances: NextPage<{ finances: Transfer[] }> = ({ finances }) => {
 
     return (
         <div>
-            <Head>
-                <title>Finances</title>
-                <meta
-                    name="viewport"
-                    content="initial-scale=1.0, width=device-width"
-                />
-            </Head>
-            <h1>DAO FINANCES</h1>
-            <ul>{listItems}</ul>
+            <Layout>
+                <h1>DAO FINANCES</h1>
+                <ul>{listItems}</ul>
+            </Layout>
         </div>
     )
 }

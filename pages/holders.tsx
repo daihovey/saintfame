@@ -1,8 +1,6 @@
 import { NextPage } from 'next'
 import { ethers, Contract } from 'ethers'
-import Head from 'next/head'
-import axios from 'axios'
-import { Log } from 'ethers/providers'
+import Layout from '../components/Layout'
 
 const API_KEY = 'X3SIP83C2DJ8VRBYIF9NSUKRBRGHI6DX22'
 
@@ -66,15 +64,10 @@ const Holders: NextPage<{ addresses: string[] }> = ({ addresses }) => {
 
     return (
         <div>
-            <Head>
-                <title>DAOSCIPLES</title>
-                <meta
-                    name="viewport"
-                    content="initial-scale=1.0, width=device-width"
-                />
-            </Head>
-            <h1>$AINT TOKEN HOLDERS</h1>
-            <ul>{listItems}</ul>
+            <Layout>
+                <h1>$AINT TOKEN HOLDERS</h1>
+                <ul>{listItems}</ul>
+            </Layout>
         </div>
     )
 }
