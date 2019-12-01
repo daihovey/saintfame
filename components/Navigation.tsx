@@ -1,23 +1,15 @@
 import Link from 'next/link'
 
-const style = {}
-
-const linkStyle = {
-    marginRight: 15
-}
-
 const Navigation = () => (
-    <div style={style}>
-        <Link href="/holders">
-            <a style={linkStyle} title="Holders Page">
-                Holders
-            </a>
-        </Link>
-        <Link href="/finances">
-            <a style={linkStyle} title="Finances Page">
-                Finances
-            </a>
-        </Link>
+    <div>
+        <span className="nav">
+            <Link href="/holders">
+                <a title="Holders Page">Holders</a>
+            </Link>
+            <Link href="/finances">
+                <a title="Finances Page">Finances</a>
+            </Link>
+        </span>
         <style jsx>{`
             h1,
             a {
@@ -36,6 +28,12 @@ const Navigation = () => (
             }
             a:selected {
                 color: #ff00d6;
+            }
+            .nav {
+                margin-left: 100px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
             }
         `}</style>
     </div>

@@ -22,12 +22,21 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children, title }) => (
                 content="initial-scale=1.0, width=device-width"
             />
         </Head>
-        <Navigation />
-        <RetinaImage
-            src={require('../assets/logo/logo.png')}
-            style={{ marginTop: 24 }}
-        />
-        {children}
+        <span className="content-header flex-center">
+            <RetinaImage
+                src={require('../public/assets/logo/logo.png')}
+                style={{ marginTop: 24 }}
+            />
+        </span>
+        <span className="site">
+            <span className="site-nav">
+                <Navigation />
+            </span>
+            <span className="site-content">
+                <span className="site-topic">{children}</span>
+            </span>
+        </span>
+
         <style global jsx>{`
             body {
                 background: black;
@@ -45,6 +54,37 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children, title }) => (
             }
             h1 {
                 color: #fff;
+            }
+
+            // # PAGE STRUCTURE
+            .site {
+                display: flex;
+                min-height: 100vh;
+            }
+
+            .site-nav {
+                width: 300px;
+                margin-right: 100px;
+            }
+
+            .site-content {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+            }
+            .content-header {
+                height: 40px;
+                margin-top: 60px;
+            }
+
+            .content-topic {
+                flex-grow: 1;
+            }
+
+            .flex-center {
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         `}</style>
     </div>

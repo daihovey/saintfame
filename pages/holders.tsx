@@ -65,7 +65,6 @@ const Holders: NextPage<{ addresses: string[] }> = ({ addresses }) => {
     return (
         <div>
             <Layout>
-                <h1>$AINT TOKEN HOLDERS</h1>
                 <ul>{listItems}</ul>
             </Layout>
         </div>

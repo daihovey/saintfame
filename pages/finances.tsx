@@ -118,7 +118,6 @@ const Finances: NextPage<{ finances: Transfer[] }> = ({ finances }) => {
     return (
         <div>
             <Layout>
-                <h1>DAO FINANCES</h1>
                 <ul>{listItems}</ul>
             </Layout>
         </div>
