@@ -2,9 +2,9 @@ import { NextPage } from 'next'
 import { ethers } from 'ethers'
 import axios from 'axios'
 import Layout from '../components/Layout'
-import { API_KEY, DAO_ADDRESS, FINANCES_ADDRESS } from '../helper'
+import { API_KEY, FINANCES_ADDRESS } from '../helper'
 
-let FINANCES_ENDPOINT = `http://api.etherscan.io/api?module=account&action=tokentx&address=${DAO_ADDRESS}&startblock=8972891&endblock=latest&sort=asc&apikey=${API_KEY}`
+let FINANCES_ENDPOINT = `http://api.etherscan.io/api?module=account&action=tokentx&address=${FINANCES_ADDRESS}&startblock=8972891&endblock=latest&sort=asc&apikey=${API_KEY}`
 
 const provider = new ethers.providers.EtherscanProvider('mainnet', API_KEY)
 
@@ -63,9 +63,9 @@ const getFinances = async () => {
 
     const data = result.data.result
 
-    // Don't show transfers from DAO, only incomming
+    // Don't show transfers from FINANCES_ADDRESS, only incomming
     const filtered = data.filter(function(log: any) {
-        return log.from !== DAO_ADDRESS
+        return log.from !== FINANCES_ADDRESS
     })
 
     const parsedTransfers: ParsedTransfer[] = filtered.map(function(log: any) {
@@ -135,30 +135,6 @@ const Finances: NextPage<{ finances: Transfer[] }> = ({ finances }) => {
                     line-height: 40px;
                     color: ##fffafa;
                     opacity: 0.5;
-                }
-                .holderRow {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: space-around;
-                }
-                .holderLink {
-                    flex-grow: 9;
-                }
-                .holderBalance {
-                    flex-grow: 1;
-                }
-                .tableHeader {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: flex-start;
-                }
-                .tableHeaderLeft,
-                .tableHeaderRight {
-                    flex-basis: 50%;
-                }
-                .rightAlignText {
-                    text-align: right;
                 }
                 .topPadding {
                     padding-top: 50px;
