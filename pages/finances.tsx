@@ -1,22 +1,18 @@
 import { NextPage } from 'next'
-import { ethers, Contract } from 'ethers'
+import { ethers } from 'ethers'
 import axios from 'axios'
 import Layout from '../components/Layout'
+import { API_KEY, DAO_ADDRESS, FINANCES_ADDRESS } from '../helper'
 
-const API_KEY = 'X3SIP83C2DJ8VRBYIF9NSUKRBRGHI6DX22'
-const DAO = '0xf739c4d15854cab9874e24a4d1ec084dcaf1f13f'
-
-let FINANCES_ENDPOINT = `http://api.etherscan.io/api?module=account&action=tokentx&address=${DAO}&startblock=8972891&endblock=latest&sort=asc&apikey=${API_KEY}`
+let FINANCES_ENDPOINT = `http://api.etherscan.io/api?module=account&action=tokentx&address=${DAO_ADDRESS}&startblock=8972891&endblock=latest&sort=asc&apikey=${API_KEY}`
 
 const provider = new ethers.providers.EtherscanProvider('mainnet', API_KEY)
 
 // prettier-ignore
 const financeContractABI = [{"constant":true,"inputs":[],"name":"proxyType","outputs":[{"name":"proxyTypeId","type":"uint256"}],"payable":false,"stateMutability":"pure","type":"function"},{"constant":true,"inputs":[],"name":"isDepositable","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"implementation","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"appId","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"kernel","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_kernel","type":"address"},{"name":"_appId","type":"bytes32"},{"name":"_initializePayload","type":"bytes"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":false,"name":"sender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"ProxyDeposit","type":"event"}]
 
-let financeAddress = '0xf739C4d15854CaB9874E24a4D1Ec084DCAF1F13F'
-
 let financeContract = new ethers.Contract(
-    financeAddress,
+    FINANCES_ADDRESS,
     financeContractABI,
     new ethers.providers.JsonRpcProvider()
 )
@@ -44,7 +40,6 @@ const getFinanceTransactions = async (
 ): Promise<InputData> => {
     let tx = await provider.getTransaction(transactionHash)
 
-    //Function: deposit(address _token, uint256 _amount, string _reference)
     let abi = ['deposit(address _token, uint256 _amount, string _reference)']
 
     let iface = new ethers.utils.Interface(abi)
@@ -70,7 +65,7 @@ const getFinances = async () => {
 
     // Don't show transfers from DAO, only incomming
     const filtered = data.filter(function(log: any) {
-        return log.from !== DAO
+        return log.from !== DAO_ADDRESS
     })
 
     const parsedTransfers: ParsedTransfer[] = filtered.map(function(log: any) {
@@ -118,8 +113,57 @@ const Finances: NextPage<{ finances: Transfer[] }> = ({ finances }) => {
     return (
         <div>
             <Layout>
+                <div className="title topPadding">Ownership distribution</div>
                 <ul>{listItems}</ul>
             </Layout>
+            <style jsx>{`
+                ul {
+                    font-family: Tenor Sans;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 18px;
+                    line-height: 40px;
+                    color: #fffafa;
+                    list-style-type: none;
+                    padding: 0;
+                }
+                .title {
+                    font-family: Tenor Sans;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 20px;
+                    line-height: 40px;
+                    color: ##fffafa;
+                    opacity: 0.5;
+                }
+                .holderRow {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-around;
+                }
+                .holderLink {
+                    flex-grow: 9;
+                }
+                .holderBalance {
+                    flex-grow: 1;
+                }
+                .tableHeader {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                }
+                .tableHeaderLeft,
+                .tableHeaderRight {
+                    flex-basis: 50%;
+                }
+                .rightAlignText {
+                    text-align: right;
+                }
+                .topPadding {
+                    padding-top: 50px;
+                }
+            `}</style>
         </div>
     )
 }

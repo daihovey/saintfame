@@ -4,7 +4,7 @@ const Navigation = () => (
     <div>
         <span className="nav">
             <Link href="/holders">
-                <a title="Holders Page">Holders</a>
+                <a title="Holders Page">Tokens</a>
             </Link>
             <Link href="/finances">
                 <a title="Finances Page">Finances</a>

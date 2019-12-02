@@ -36,7 +36,6 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children, title }) => (
                 <span className="site-topic">{children}</span>
             </span>
         </span>
-
         <style global jsx>{`
             body {
                 background: black;
@@ -49,8 +48,19 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children, title }) => (
                 font-weight: normal;
                 font-size: 25px;
                 line-height: 40px;
-
                 color: #fffafa;
+            }
+            a:link {
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            a:visited {
+                text-decoration: none;
+            }
+            a:active {
+                text-decoration: underline;
             }
             h1 {
                 color: #fff;
@@ -60,6 +70,8 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children, title }) => (
             .site {
                 display: flex;
                 min-height: 100vh;
+                padding-top: 50px;
+                width: 80%;
             }
 
             .site-nav {

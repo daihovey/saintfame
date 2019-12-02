@@ -1,11 +1,12 @@
 import { NextPage } from 'next'
 import Layout from '../components/Layout'
 import React from 'react'
+import Loader from '../components/Loader'
 
 const Index: React.FunctionComponent = () => {
     return (
         <Layout>
-            <h1>Derp</h1>
+            <Loader />
         </Layout>
     )
 }
