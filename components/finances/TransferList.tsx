@@ -5,7 +5,7 @@ import Loader from '../Loader'
 import AddressBalance from '../holders/AddressBalance'
 import axios from 'axios'
 
-let FINANCES_ENDPOINT = `http://api.etherscan.io/api?module=account&action=tokentx&address=${FINANCES_ADDRESS}&startblock=8972891&endblock=latest&sort=asc&apikey=${API_KEY}`
+let FINANCES_ENDPOINT = `https://api.etherscan.io/api?module=account&action=tokentx&address=${FINANCES_ADDRESS}&startblock=8972891&endblock=latest&sort=asc&apikey=${API_KEY}`
 
 const provider = new ethers.providers.EtherscanProvider('mainnet', API_KEY)
 
