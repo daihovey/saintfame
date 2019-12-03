@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { ethers, Contract } from 'ethers'
 import { API_KEY, TOKEN_HOLDER_ADDRESS } from '../../helper'
