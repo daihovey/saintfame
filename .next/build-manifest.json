@@ -16,10 +16,6 @@
       "static/runtime/polyfills.js",
       "static/runtime/polyfills.js.map"
     ],
-    "/finances": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
     "/holders": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"

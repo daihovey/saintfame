@@ -1,6 +1,6 @@
 const Loader = () => (
     <div>
-        <span className="loader">
+        <span className="loader" key="loader">
             <h1>Loading...</h1>
         </span>
         <style jsx>{`

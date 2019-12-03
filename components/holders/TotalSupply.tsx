@@ -25,7 +25,7 @@ const TotalSupply = () => {
             setBalance(amount)
         })
         .catch(err => {
-            return <div></div>
+            setBalance('')
         })
 
     return (
