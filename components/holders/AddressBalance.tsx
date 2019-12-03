@@ -39,7 +39,7 @@ const AddressBalance = (props: any) => {
                     font-family: Tenor Sans;
                     font-style: normal;
                     font-weight: normal;
-                    font-size: 25px;
+                    font-size: 18px;
                     color: #fffafa;
                     text-align: right;
                 }

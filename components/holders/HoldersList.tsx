@@ -97,6 +97,7 @@ const HoldersList = () => {
                     flex-direction: row;
                     align-items: center;
                     justify-content: flex-start;
+                    
                 }
                 .holderLink {
                     text-align: left;
